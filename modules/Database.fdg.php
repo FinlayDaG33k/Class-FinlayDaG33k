@@ -4,6 +4,10 @@ class FDG_Database {
     return new mysqli($config["Host"], $config["Username"], base64_decode($config["Password"]), $config["Database"]); // open the MySQLi connection
 	}
 
+  public static function PConnect($config) {
+    return new mysqli('p:'.$config["Host"], $config["Username"], base64_decode($config["Password"]), $config["Database"]); // open the MySQLi connection
+	}
+
   public static function Close($conn){
     // close the connection and check if it was a success
     if($conn->close()){
