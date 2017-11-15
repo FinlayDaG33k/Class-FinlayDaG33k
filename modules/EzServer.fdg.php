@@ -27,4 +27,19 @@ class FDG_EzServer {
     $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
     return self::getProto() . "://" . $_SERVER['HTTP_HOST'] . $uri_parts[0];
   }
+  public function getPage(){
+    if (!empty($_GET['page'])) { // Check if the user explicitly requested a page
+    	$tmp_page = basename($_GET['page']); // Put the requested pagename into a little variable
+    	if (file_exists("pages/{$tmp_page}.php")) { // Check if the page the user requested exists in out /pages directory
+        // If the file exists
+    		return $tmp_page; // return the tmp_page as the page
+    	} else {
+        // If the page does not exist
+    		return "404"; // return the errorpage as the page
+    	}
+    }else{
+      // If there has no page been explicitly requested by the user
+      return "home"; // return the homepage as the page
+    }
+  }
 }
