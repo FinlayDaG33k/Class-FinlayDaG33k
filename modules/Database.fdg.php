@@ -5,7 +5,7 @@ class FDG_Database {
     echo "Loaded!";
   }
 
-	public static function Initialize($config) {
+	public static function Connect($config) {
     return mysqli_connect($config["Host"], $config["Username"], base64_decode($config["Password"]), $config["Database"]); // open the MySQLi connection
 	}
 
