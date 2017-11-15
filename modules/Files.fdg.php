@@ -2,16 +2,16 @@
 class FDG_Files{
   function sizeToBinary($bytes,$units){
     $bytes = max($bytes, 0);
-    $pow = floor(($bytes ? log($bytes) : 0) / log($chunkSize));
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
     $pow = min($pow, count($units) - 1);
     $precision = 2;
-    $bytes /= pow($chunkSize, $pow);;
+    $bytes /= pow(1024, $pow);;
   }
   function sizeToSI($bytes,$units){
     $bytes = max($bytes, 0);
-    $pow = floor(($bytes ? log($bytes) : 0) / log($chunkSize));
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1000));
     $pow = min($pow, count($units) - 1);
     $precision = 2;
-    $bytes /= pow($chunkSize, $pow);;
+    $bytes /= pow(1000, $pow);;
   }
 }
