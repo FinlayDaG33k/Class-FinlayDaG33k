@@ -32,3 +32,5 @@ class FinlayDaG33k {
     }
   }
 }
+
+$FinlayDaG33k = new FinlayDaG33k;
