@@ -24,8 +24,9 @@ class FDG_EzServer {
   }
 
   public static function getHome(){
-    $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
-    return self::getProto() . "://" . $_SERVER['HTTP_HOST'] . $uri_parts[0];
+    $currentPath = $_SERVER['PHP_SELF'];
+    $pathInfo = pathinfo($currentPath);
+    return self::getProto()."://".$_SERVER['HTTP_HOST'].$pathInfo['dirname'];
   }
   public function getPage(){
     if (!empty($_GET['page'])) { // Check if the user explicitly requested a page
