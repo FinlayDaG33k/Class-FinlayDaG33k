@@ -28,7 +28,8 @@ class FDG_EzServer {
     $pathInfo = pathinfo($currentPath);
     return self::getProto()."://".$_SERVER['HTTP_HOST'].$pathInfo['dirname'];
   }
-  public function getPage(){
+
+  public static function getPage(){
     if (!empty($_GET['page'])) { // Check if the user explicitly requested a page
     	$tmp_page = basename($_GET['page']); // Put the requested pagename into a little variable
     	if (file_exists("pages/{$tmp_page}.php")) { // Check if the page the user requested exists in out /pages directory
