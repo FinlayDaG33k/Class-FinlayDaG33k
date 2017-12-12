@@ -1,5 +1,6 @@
 <?php
 class FDG_EzServer {
+  private $modVersion = "0.2a";
 	public static function jsLog($message) {
 		echo "<script>console.log(\"".$message."\");</script>"; // return our console.log call
 	}

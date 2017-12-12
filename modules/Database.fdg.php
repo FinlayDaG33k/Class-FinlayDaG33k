@@ -1,5 +1,6 @@
 <?php
 class FDG_Database {
+  private $modVersion = "0.1a";
 	public static function Connect($config) {
     return new mysqli($config["Host"], $config["Username"], base64_decode($config["Password"]), $config["Database"]); // open the MySQLi connection
 	}

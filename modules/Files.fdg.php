@@ -1,5 +1,6 @@
 <?php
 class FDG_Files{
+  private $modVersion = "0.1a";
   public static function sizeToBinary($bytes,$units,$precision = 2){
     $bytes = max($bytes, 0);
     $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
