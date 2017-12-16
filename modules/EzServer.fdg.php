@@ -45,4 +45,20 @@ class FDG_EzServer {
       return "home"; // return the homepage as the page
     }
   }
+  public static function randomStr($length = 8){
+    // Check if we run PHP7.0 or higher
+    if (version_compare(PHP_VERSION, '7.0.0') >= 0) {
+      // Use a more cryptographically secure generator
+      return bin2hex(random_bytes($length));
+    }else{
+      // Not so cryptographically secure generator for older versions
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $charactersLength = strlen($characters);
+      $randomString = '';
+      for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+      }
+      return $randomString;
+    }
+  }
 }
