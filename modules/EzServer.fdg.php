@@ -32,7 +32,7 @@ class FDG_EzServer {
   public static function getHome(){
     $currentPath = $_SERVER['PHP_SELF'];
     $pathInfo = pathinfo($currentPath);
-    return self::getProto()."://".$_SERVER['HTTP_HOST'].$pathInfo['dirname'];
+    return rtrim(self::getProto()."://".$_SERVER['HTTP_HOST'].$pathInfo['dirname'],"/");
   }
 
   public static function getRoot(){
