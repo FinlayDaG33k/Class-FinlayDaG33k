@@ -30,6 +30,10 @@ class FDG_EzServer {
     return self::getProto()."://".$_SERVER['HTTP_HOST'].$pathInfo['dirname'];
   }
 
+  public static function getRoot(){
+    return self::getProto()."://".$_SERVER['HTTP_HOST'];
+  }
+
   public static function getPage(){
     if (!empty($_GET['page'])) { // Check if the user explicitly requested a page
     	$tmp_page = basename($_GET['page']); // Put the requested pagename into a little variable
