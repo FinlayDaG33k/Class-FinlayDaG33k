@@ -6,10 +6,15 @@ class FDG_EzServer {
 	}
 
 	public static function getProto() {
-		if(!empty($_SERVER['HTTPS'])){
-      return "https";
+    // Check wether is using Cloudflare or not
+    if(!empty($_SERVER['HTTP_CF_VISITOR'])){
+      return json_decode($_SERVER['HTTP_CF_VISITOR'],1)['scheme'];
     }else{
-      return "http";
+      if(!empty($_SERVER['HTTPS'])){
+        return "https";
+      }else{
+        return "http";
+      }
     }
 	}
 
