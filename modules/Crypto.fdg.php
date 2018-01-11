@@ -4,7 +4,7 @@
 */
 
 class FDG_Crypto {
-  private $modVersion = "0.1.0.1a";
+  const MOD_VERSION = "0.1.0.1a";
 
   /**
   * Generate an IV (Initialization Vector) for use with AES (and other cyphers that use an IV)

@@ -10,7 +10,7 @@
  */
 
 class FinlayDaG33k {
-  private $Version = "1.2a";
+  const VERSION = "1.2a";
   public $moduleDir = __DIR__ . "/modules/";
   public $Modules = [];
   public function __construct() {

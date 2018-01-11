@@ -4,7 +4,7 @@
 */
 
 class FDG_Files{
-  private $modVersion = "0.1.1.1a";
+  const MOD_VERSION = "0.1.1.1a";
 
   /**
   * Convert bytecount to a more human-readable format.

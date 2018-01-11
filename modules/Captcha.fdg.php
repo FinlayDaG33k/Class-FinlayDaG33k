@@ -4,7 +4,7 @@
 */
 
 class FDG_Captcha{
-  private $modVersion = "0.1.0.1a";
+  const MOD_VERSION = "0.1.0.1a";
 
   /**
   * Add the captcha Javascript to the document

@@ -4,7 +4,7 @@
 */
 
 class FDG_EzServer {
-  private $modVersion = "0.5.0.1a";
+  const MOD_VERSION = "0.5.0.1a";
 
   /**
   * Simple Javascript console.log()
