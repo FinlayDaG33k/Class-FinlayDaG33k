@@ -6,7 +6,7 @@
 
 /*
  * Special thanks to:
- * - Spike2147 (Helping me getting the module loading to work)
+ * - Spike2147 (Helping me with a tonne of issues)
  */
 
 class FinlayDaG33k {
