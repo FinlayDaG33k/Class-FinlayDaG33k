@@ -1,6 +1,7 @@
 <?php
 class FDG_EzServer {
-  private $modVersion = "0.4.2a";
+  private $modVersion = "0.5a";
+
 	public static function jsLog($message) {
 		echo "<script>console.log(\"".$message."\");</script>"; // return our console.log call
 	}
@@ -40,18 +41,19 @@ class FDG_EzServer {
   }
 
   public static function getPage(){
+  public static function getPage($pageDir = "pages", $defaultPage = "home",$errorPage = "404"){
     if (!empty($_GET['page'])) { // Check if the user explicitly requested a page
     	$tmp_page = basename($_GET['page']); // Put the requested pagename into a little variable
-    	if (file_exists("pages/{$tmp_page}.php")) { // Check if the page the user requested exists in out /pages directory
+    	if (file_exists("{$pageDir}/{$tmp_page}.php")) { // Check if the page the user requested exists in out /pages directory
         // If the file exists
     		return $tmp_page; // return the tmp_page as the page
     	} else {
         // If the page does not exist
-    		return "404"; // return the errorpage as the page
+    		return $errorPage; // return the errorpage as the page
     	}
     }else{
       // If there has no page been explicitly requested by the user
-      return "home"; // return the homepage as the page
+      return $defaultPage; // return the homepage as the page
     }
   }
   public static function randomStr($length = 8){
