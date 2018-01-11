@@ -9,6 +9,7 @@ class FDG_Database {
   public function __construct($fdg) {
     $this->FinlayDaG33k = $fdg;
   }
+
   /**
   * Start a MySQLi connection to a MySQL Database
   *
