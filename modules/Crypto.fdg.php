@@ -57,7 +57,7 @@ class FDG_Crypto {
   * @param string|int $seed2 A fixed secondary seed for the generator (Only change this when needed!).
   * @return string A 256-bit pseudo-random string
   */
-  public static function generateKey($a = "", $b = "", $seed, $seed2 = "L@m3s33ds@r3l@m3") {
+  public function generateKey($a = "", $b = "", $seed, $seed2 = "L@m3s33ds@r3l@m3") {
     $str = $seed2;
     $str = $this->FinlayDaG33k->EzServer->strInsert($a, 0, $str);
     $str = $this->FinlayDaG33k->EzServer->strInsert($b, strlen($a), $str);
