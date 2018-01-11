@@ -6,6 +6,10 @@
 class FDG_EzServer {
   const MOD_VERSION = "0.5.0.1a";
 
+  public function __construct($fdg) {
+    $this->FinlayDaG33k = $fdg;
+  }
+
   /**
   * Simple Javascript console.log()
   *

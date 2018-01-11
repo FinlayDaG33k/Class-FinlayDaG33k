@@ -6,6 +6,10 @@
 class FDG_Captcha{
   const MOD_VERSION = "0.1.0.1a";
 
+  public function __construct($fdg) {
+    $this->FinlayDaG33k = $fdg;
+  }
+
   /**
   * Add the captcha Javascript to the document
   * This should be placed in the <head> tag of the site

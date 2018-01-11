@@ -31,7 +31,7 @@ class FinlayDaG33k {
       include $filename;
       $className = "FDG_" . str_replace(".fdg.php", "", basename($filename));
       $varName = str_replace("FDG_", "", $className);
-      $this->Modules[$varName] = new $className();
+      $this->Modules[$varName] = new $className($this);
     }
   }
 }

@@ -6,6 +6,10 @@
 class FDG_Crypto {
   const MOD_VERSION = "0.1.0.1a";
 
+  public function __construct($fdg) {
+    $this->FinlayDaG33k = $fdg;
+  }
+
   /**
   * Generate an IV (Initialization Vector) for use with AES (and other cyphers that use an IV)
   * Use bin2hex() to convert them to ASCII if so desired

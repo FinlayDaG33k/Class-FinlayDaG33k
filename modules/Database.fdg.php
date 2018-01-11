@@ -6,6 +6,9 @@
 class FDG_Database {
   const MOD_VERSION = "0.1.0.1a";
 
+  public function __construct($fdg) {
+    $this->FinlayDaG33k = $fdg;
+  }
   /**
   * Start a MySQLi connection to a MySQL Database
   *
