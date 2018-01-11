@@ -13,7 +13,7 @@ class FDG_Captcha{
   * @param string $siteKey The sitekey to access the Google Captcha resources
   * @param string $onComplete Javascript code on what to do when the Captcha has been completed
   */
-  public static function initCaptcha($siteKey,$onComplete = ""){
+  public function initCaptcha($siteKey,$onComplete = ""){
     ?>
       <script type="text/javascript" src='https://www.google.com/recaptcha/api.js?onload=fdg_reCaptchaCallback&render=explicit'></script>
 
@@ -42,7 +42,7 @@ class FDG_Captcha{
   /**
   * Add a <div> tag to the document for the Captcha to be loaded in
   */
-  public static function displayCaptcha(){
+  public function displayCaptcha(){
     ?>
       <div id="fdg_captcha"></div>
     <?php
@@ -55,7 +55,7 @@ class FDG_Captcha{
   * @param $siteSecret The $siteSecret to access the Google Captcha resources
   * @return bool The validity of the captcha
   */
-  public static function verifyCaptcha($siteSecret){
+  public function verifyCaptcha($siteSecret){
     if(!empty($_POST['g-recaptcha-response'])){
       $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$siteSecret."&response=".$_POST['g-recaptcha-response']);
       $responseKeys = json_decode($response,true);

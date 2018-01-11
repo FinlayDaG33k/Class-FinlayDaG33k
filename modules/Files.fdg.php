@@ -13,7 +13,7 @@ class FDG_Files{
   * @param array $units An array of string objects, containing the display values
   * @return string The human-readable format
   */
-  public static function sizeToBinary($bytes,$units,$precision = 2){
+  public function sizeToBinary($bytes,$units,$precision = 2){
     $bytes = max($bytes, 0);
     $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
     $pow = min($pow, count($units) - 1);
@@ -28,7 +28,7 @@ class FDG_Files{
   * @param array $units An array of string objects, containing the display values
   * @return string The human-readable format
   */
-  public static function sizeToSI($bytes,$units,$precision = 2){
+  public function sizeToSI($bytes,$units,$precision = 2){
     $bytes = max($bytes, 0);
     $pow = floor(($bytes ? log($bytes) : 0) / log(1000));
     $pow = min($pow, count($units) - 1);

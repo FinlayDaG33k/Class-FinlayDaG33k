@@ -11,7 +11,7 @@ class FDG_EzServer {
   *
   * @param string $message The message to be logged to the console
   */
-	public static function jsLog($message) {
+	public function jsLog($message) {
 		echo "<script>console.log(\"".$message."\");</script>";
 	}
 
@@ -21,7 +21,7 @@ class FDG_EzServer {
   *
   * @return string Wether using HTTP or HTTPS
   */
-	public static function getProto() {
+	public function getProto() {
     // Check wether is using Cloudflare or not
     if(!empty($_SERVER['HTTP_CF_VISITOR'])){
       return json_decode($_SERVER['HTTP_CF_VISITOR'],1)['scheme'];
@@ -39,7 +39,7 @@ class FDG_EzServer {
   *
   * @return mixed The method
   */
-  public static function getMethod(){
+  public function getMethod(){
     switch(strtoupper($_SERVER['REQUEST_METHOD'])){
       case "POST":
         return "POST";
@@ -53,7 +53,7 @@ class FDG_EzServer {
   /**
   * @return string The home path of the current file
   */
-  public static function getHome(){
+  public function getHome(){
     $currentPath = $_SERVER['PHP_SELF'];
     $pathInfo = pathinfo($currentPath);
     return rtrim(self::getProto()."://".$_SERVER['HTTP_HOST'].$pathInfo['dirname'],"/");
@@ -62,7 +62,7 @@ class FDG_EzServer {
   /**
   * @return string The root of the current domain
   */
-  public static function getRoot(){
+  public function getRoot(){
     return self::getProto()."://".$_SERVER['HTTP_HOST'];
   }
 
@@ -74,7 +74,7 @@ class FDG_EzServer {
   * @param string $errorPage The page to show when the requested page does not exist
   * @return string The page to show the user
   */
-  public static function getPage($pageDir = "pages", $defaultPage = "home", $errorPage = "404"){
+  public function getPage($pageDir = "pages", $defaultPage = "home", $errorPage = "404"){
     if (!empty($_GET['page'])) { // Check if the user explicitly requested a page
     	$tmp_page = basename($_GET['page']); // Put the requested pagename into a little variable
     	if (file_exists("{$pageDir}/{$tmp_page}.php")) { // Check if the page the user requested exists in out /pages directory
@@ -97,7 +97,7 @@ class FDG_EzServer {
   * @param int $lenght The lenght of the random string
   * @return string The random string
   */
-  public static function randomStr($length = 8){
+  public function randomStr($length = 8){
     // Check if we run PHP7.0 or higher
     if (version_compare(PHP_VERSION, '7.0.0') >= 0) {
       // Use a more cryptographically secure generator

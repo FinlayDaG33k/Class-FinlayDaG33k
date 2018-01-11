@@ -12,7 +12,7 @@ class FDG_Database {
   * @param array $config an array containing all the credentials needed to connect
   * @param mixed The MySQLi connection
   */
-	public static function Connect($config) {
+	public function Connect($config) {
     return new mysqli($config["Host"], $config["Username"], base64_decode($config["Password"]), $config["Database"]);
 	}
 
@@ -22,7 +22,7 @@ class FDG_Database {
   * @param array $config an array containing all the credentials needed to connect
   * @param mixed The MySQLi connection
   */
-  public static function PConnect($config) {
+  public function PConnect($config) {
     return new mysqli('p:'.$config["Host"], $config["Username"], base64_decode($config["Password"]), $config["Database"]);
 	}
 
@@ -32,7 +32,7 @@ class FDG_Database {
   * @param mixed $conn The MySQLi connection to be closed
   * @return bool Wether closing the MySQLi connection succeeded or not
   */
-  public static function Close($conn){
+  public function Close($conn){
     if($conn->close()){
       return true;
     }else{

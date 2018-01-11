@@ -13,7 +13,7 @@ class FDG_Crypto {
   * @param int $lenght The lenght of the IV
   * @return string The pseudo-randomly generated IV in the form of bytes.
   */
-  public static function genIv($lenght = 16){
+  public function genIv($lenght = 16){
     return random_bytes($lenght);
   }
 
@@ -24,7 +24,7 @@ class FDG_Crypto {
   * @param string $value The value to be encrypted
   * @param string $key The key with which to encrypt $value
   */
-  public static function aesEncrypt($value,$key){
+  public function aesEncrypt($value,$key){
     $iv = self::genIv(16);
     return base64_encode($iv."***".openssl_encrypt($value, "aes-256-cbc", $key, OPENSSL_RAW_DATA, $iv));
   }
@@ -37,7 +37,7 @@ class FDG_Crypto {
   * @param string $key The key needed to decypher the encrypted data
   * @return string The decrypted data
   */
-  public static function aesDecrypt($data,$key){
+  public function aesDecrypt($data,$key){
     $data = explode("***",base64_decode($data));
     $iv = $data[0];
     $data = $data[1];
