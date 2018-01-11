@@ -41,7 +41,7 @@ class FDG_EzServer {
   }
 
   public static function getPage(){
-  public static function getPage($pageDir = "pages", $defaultPage = "home",$errorPage = "404"){
+  public static function getPage($pageDir = "pages", $defaultPage = "home", $errorPage = "404"){
     if (!empty($_GET['page'])) { // Check if the user explicitly requested a page
     	$tmp_page = basename($_GET['page']); // Put the requested pagename into a little variable
     	if (file_exists("{$pageDir}/{$tmp_page}.php")) { // Check if the page the user requested exists in out /pages directory
