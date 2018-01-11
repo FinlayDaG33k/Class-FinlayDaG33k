@@ -37,6 +37,6 @@ class FinlayDaG33k {
 }
 
 /**
-* @return mixed an object for the class
-*/
+* @var FinlayDaG33k an instance of the classloader
+**/
 $FinlayDaG33k = new FinlayDaG33k;
