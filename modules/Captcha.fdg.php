@@ -1,7 +1,18 @@
 <?php
-class FDG_Captcha{
-  private $modVersion = "0.1a";
+/**
+* Easy implementation of the Google Captcha.
+*/
 
+class FDG_Captcha{
+  private $modVersion = "0.1.0.1a";
+
+  /**
+  * Add the captcha Javascript to the document
+  * This should be placed in the <head> tag of the site
+  *
+  * @param string $siteKey The sitekey to access the Google Captcha resources
+  * @param string $onComplete Javascript code on what to do when the Captcha has been completed
+  */
   public static function initCaptcha($siteKey,$onComplete = ""){
     ?>
       <script type="text/javascript" src='https://www.google.com/recaptcha/api.js?onload=fdg_reCaptchaCallback&render=explicit'></script>
@@ -28,6 +39,9 @@ class FDG_Captcha{
     <?php
   }
 
+  /**
+  * Add a <div> tag to the document for the Captcha to be loaded in
+  */
   public static function displayCaptcha(){
     ?>
       <div id="fdg_captcha"></div>
@@ -35,6 +49,12 @@ class FDG_Captcha{
     return true;
   }
 
+  /**
+  * Verify a captcha
+  *
+  * @param $siteSecret The $siteSecret to access the Google Captcha resources
+  * @return bool The validity of the captcha
+  */
   public static function verifyCaptcha($siteSecret){
     if(!empty($_POST['g-recaptcha-response'])){
       $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$siteSecret."&response=".$_POST['g-recaptcha-response']);
