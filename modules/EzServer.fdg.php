@@ -117,4 +117,15 @@ class FDG_EzServer {
       return $randomString;
     }
   }
+
+  /**
+  * Insert a string inside another string
+  *
+  * @param string $insert What to insert
+  * @param int $pos the position where to insert
+  * @param string $string The starting string
+  */
+  public function strInsert($insert, $pos, $string){
+    return substr($string, 0, $pos) . $insert . substr($string, $pos + strlen($insert));
+  }
 }

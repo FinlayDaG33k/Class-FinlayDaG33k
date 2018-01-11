@@ -47,4 +47,23 @@ class FDG_Crypto {
     $data = $data[1];
     return openssl_decrypt($data, "aes-256-cbc", $key, OPENSSL_RAW_DATA, $iv);
   }
+
+  /**
+  * Generate a pseudo-random string for use with self::aesEncrypt
+  *
+  * @param string $a Some input
+  * @param string $a Some other input
+  * @param string|int $seed The main seed for the generator
+  * @param string|int $seed2 A fixed secondary seed for the generator (Only change this when needed!).
+  * @return string A 256-bit pseudo-random string
+  */
+  public static function generateKey($a = "", $b = "", $seed, $seed2 = "L@m3s33ds@r3l@m3") {
+    $str = $seed2;
+    $str = $this->FinlayDaG33k->EzServer->strInsert($a, 0, $str);
+    $str = $this->FinlayDaG33k->EzServer->strInsert($b, strlen($a), $str);
+    srand($seed);
+    $str = str_shuffle($str);
+    srand(time()); // Set the seed back to time() to not interfere with other random generators
+    return hash('sha256',$str);
+  }
 }
