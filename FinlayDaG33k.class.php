@@ -10,14 +10,18 @@
  */
 
 class FinlayDaG33k {
-  public $packageData = json_decode(file_get_contents(__DIR__."/package.json"),1);
+  public $packageData = [];
 
   public $moduleDir = __DIR__ . "/modules/";
   public $Modules = [];
+  public $fdgWarns = [];
   public function __construct() {
+    // Load the packageData
+    $this->packageData = json_decode(file_get_contents(__DIR__."/package.json"),1);
+
     // Check wether the current PHP version is higher or equal to the minimum
     if(version_compare(PHP_VERSION, $this->packageData['min-php']) < 0){
-      array_push($this->fdgWarns,"We've detected that this server runs on PHP ".PHP_VERSION.". However, this library has been written for PHP >=".PACKAGEDATA['min-php'].". Please consider updating your PHP! Failing to do so may result in nasty bugs!");
+      array_push($this->fdgWarns,"We've detected that this server runs on PHP ".PHP_VERSION.". However, this library has been written for PHP >=".$this->packageData['min-php'].". Please consider updating your PHP! Failing to do so may result in nasty bugs!");
     }
 
     $this->LoadModules();
