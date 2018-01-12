@@ -10,7 +10,7 @@
  */
 
 class FinlayDaG33k {
-  const VERSION = "3.0a";
+  public $packageData = json_decode(file_get_contents(__DIR__."/package.json"),1);
 
   public $moduleDir = __DIR__ . "/modules/";
   public $Modules = [];
