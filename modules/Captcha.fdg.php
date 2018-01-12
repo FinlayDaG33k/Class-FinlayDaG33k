@@ -4,8 +4,6 @@
 */
 
 class FDG_Captcha{
-  const MOD_VERSION = "1.0a";
-
   public function __construct($fdg) {
     $this->FinlayDaG33k = $fdg;
   }
