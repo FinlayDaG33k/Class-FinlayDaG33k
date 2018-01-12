@@ -24,6 +24,10 @@ class FinlayDaG33k {
       array_push($this->fdgWarns,"We've detected that this server runs on PHP ".PHP_VERSION.". However, this library has been written for PHP >=".$this->packageData['min-php'].". Please consider updating your PHP! Failing to do so may result in nasty bugs!");
     }
 
+    if($this->checkUpdate()){
+      array_push($this->fdgWarns,"A New version for Class-FinlayDaG33k is available for download!");
+    }
+
     $this->LoadModules();
   }
 
@@ -53,6 +57,22 @@ class FinlayDaG33k {
       ?>
         <script>console.log("[Class-FinlayDaG33k] <?= $warn; ?>");</script>
       <?php
+    }
+  }
+
+  public function checkUpdate(){;
+    if (empty($this->packageData['version'])){
+      return false;
+    }
+    $newData = json_decode(file_get_contents("https://raw.githubusercontent.com/FinlayDaG33k/Class-FinlayDaG33k/master/package.json"),1);
+    if (empty($newData['version'])){
+      return false;
+    }
+
+    if(version_compare($this->packageData['version'], $newData['version']) < 0){
+      return true;
+    }else{
+      return false;
     }
   }
 }
