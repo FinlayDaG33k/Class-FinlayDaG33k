@@ -15,6 +15,11 @@ class FinlayDaG33k {
   public $moduleDir = __DIR__ . "/modules/";
   public $Modules = [];
   public function __construct() {
+    // Check wether the current PHP version is higher or equal to the minimum
+    if(version_compare(PHP_VERSION, $this->packageData['min-php']) < 0){
+      array_push($this->fdgWarns,"We've detected that this server runs on PHP ".PHP_VERSION.". However, this library has been written for PHP >=".PACKAGEDATA['min-php'].". Please consider updating your PHP! Failing to do so may result in nasty bugs!");
+    }
+
     $this->LoadModules();
   }
 
@@ -33,6 +38,17 @@ class FinlayDaG33k {
       $className = "FDG_" . str_replace(".fdg.php", "", basename($filename));
       $varName = str_replace("FDG_", "", $className);
       $this->Modules[$varName] = new $className($this);
+    }
+  }
+
+  /**
+  * Write all loading warnings to the Javascript console
+  */
+  public function ShowWarnings(){
+    foreach($this->fdgWarns as $warn){
+      ?>
+        <script>console.log("[Class-FinlayDaG33k] <?= $warn; ?>");</script>
+      <?php
     }
   }
 }
