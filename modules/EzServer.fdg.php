@@ -76,9 +76,9 @@ class FDG_EzServer {
   * @param string $errorPage The page to show when the requested page does not exist
   * @return string The page to show the user
   */
-  public function getPage($pageDir = "pages", $defaultPage = "home", $errorPage = "404"){
-    if (!empty($_GET['page'])) { // Check if the user explicitly requested a page
-    	$tmp_page = basename($_GET['page']); // Put the requested pagename into a little variable
+  public function getPage($pageVar = "page", $pageDir = "pages", $defaultPage = "home", $errorPage = "404"){
+    if (!empty($_GET[$pageVar])) { // Check if the user explicitly requested a page
+    	$tmp_page = basename($_GET[$pageVar]); // Put the requested pagename into a little variable
     	if (file_exists("{$pageDir}/{$tmp_page}.php")) { // Check if the page the user requested exists in out /pages directory
         // If the file exists
     		return $tmp_page; // return the tmp_page as the page
