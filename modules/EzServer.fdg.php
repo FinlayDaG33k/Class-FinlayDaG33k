@@ -96,7 +96,7 @@ class FDG_EzServer {
   * Generate a pseudo-random string
   * Use with PHP >= 7.0.0 for a more cryptographically secure generator!
   *
-  * @param int $lenght The lenght of the random string
+  * @param int $length The length of the random string
   * @return string The random string
   */
   public function randomStr($length = 8){

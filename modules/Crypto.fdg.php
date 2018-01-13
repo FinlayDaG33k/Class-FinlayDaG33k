@@ -12,11 +12,11 @@ class FDG_Crypto {
   * Generate an IV (Initialization Vector) for use with AES (and other cyphers that use an IV)
   * Use bin2hex() to convert them to ASCII if so desired
   *
-  * @param int $lenght The lenght of the IV
+  * @param int $length The length of the IV
   * @return string The pseudo-randomly generated IV in the form of bytes.
   */
-  public function genIv($lenght = 16){
-    return random_bytes($lenght);
+  public function genIv($length = 16){
+    return random_bytes($length);
   }
 
   /**
