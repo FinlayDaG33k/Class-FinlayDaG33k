@@ -12,7 +12,7 @@ class FDG_Database {
   * Start a MySQLi connection to a MySQL Database
   *
   * @param array $config an array containing all the credentials needed to connect
-  * @param mixed The MySQLi connection
+  * @return mixed The MySQLi connection
   */
 	public function Connect($config) {
     return new mysqli($config["Host"], $config["Username"], base64_decode($config["Password"]), $config["Database"]);
@@ -22,7 +22,7 @@ class FDG_Database {
   * Start a persistent MySQLi connection to a MySQL Database
   *
   * @param array $config an array containing all the credentials needed to connect
-  * @param mixed The MySQLi connection
+  * @return mixed The MySQLi connection
   */
   public function PConnect($config) {
     return new mysqli('p:'.$config["Host"], $config["Username"], base64_decode($config["Password"]), $config["Database"]);
