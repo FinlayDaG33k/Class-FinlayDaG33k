@@ -35,10 +35,6 @@ class FDG_Database {
   * @return bool Wether closing the MySQLi connection succeeded or not
   */
   public function Close($conn){
-    if($conn->close()){
-      return true;
-    }else{
-      return false;
-    }
+    return $conn->close();
   }
 }
