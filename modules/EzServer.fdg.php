@@ -124,6 +124,6 @@ class FDG_EzServer {
   * @param string $string The starting string
   */
   public function strInsert($insert, $pos, $string){
-    return substr($string, 0, $pos) . $insert . substr($string, $pos + strlen($insert));
+    return substr($string, 0, $pos) . $insert . substr($string,0, $pos + strlen($insert));
   }
 }
