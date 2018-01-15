@@ -103,7 +103,7 @@ class FDG_EzServer {
     // Check if we run PHP7.0 or higher
     if (version_compare(PHP_VERSION, '7.0.0') >= 0) {
       // Use a more cryptographically secure generator
-      return bin2hex(random_bytes($length));
+      return bin2hex(random_bytes($length / 2));
     }else{
       // Not so cryptographically secure generator for older versions
       $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
