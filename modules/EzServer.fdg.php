@@ -122,8 +122,43 @@ class FDG_EzServer {
   * @param string $insert What to insert
   * @param int $pos the position where to insert
   * @param string $string The starting string
+  * @return string The resulting string
   */
   public function strInsert($insert, $pos, $string){
     return substr($string, 0, $pos) . $insert . substr($string,0, $pos + strlen($insert));
+  }
+
+  /**
+  * Check a misspelled word for the closest suggestion
+  *
+  * @param string $input The input word
+  * @param array $wordlist An array containing all words to check the $input against
+  * @return array An array containing the closest word and their distance
+  */
+  public function levenshtein($input,$words){
+    $shortest = -1;
+    foreach ($words as $word) {
+      // calculate the distance between the input word and the current word
+      $lev = levenshtein($input, $word);
+
+      // check for an exact match
+      if ($lev == 0) {
+        // closest word is this one (exact match!)
+        $closest = $word;
+        $shortest = 0;
+        // We've found an exact match, break the loop
+        break;
+      }
+
+      // if this distance is less than the next found shortest distance, OR if a next shortest word has not yet been found
+      if ($lev <= $shortest || $shortest < 0) {
+        // set the closest match and shortest distance
+        $closest  = $word;
+        $shortest = $lev;
+      }
+    }
+
+    // give the output to back
+    return array("closest" => $closest, "distance" => $shortest);
   }
 }
