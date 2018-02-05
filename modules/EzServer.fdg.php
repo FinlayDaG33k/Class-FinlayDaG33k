@@ -122,6 +122,7 @@ class FDG_EzServer {
   * @param string $insert What to insert
   * @param int $pos the position where to insert
   * @param string $string The starting string
+  * @return string The resulting string
   */
   public function strInsert($insert, $pos, $string){
     return substr($string, 0, $pos) . $insert . substr($string,0, $pos + strlen($insert));
