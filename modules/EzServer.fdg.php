@@ -105,14 +105,20 @@ class FDG_EzServer {
       // Use a more cryptographically secure generator
       return bin2hex(random_bytes($length / 2));
     }else{
-      // Not so cryptographically secure generator for older versions
-      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      $charactersLength = strlen($characters);
-      $randomString = '';
-      for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
+      // Check wether `openssl_random_pseudo_bytes` is supported
+      if(function_exists("openssl_random_pseudo_bytes")){
+        // Use `openssl_random_pseudo_bytes` to generate a cryptographically secure string
+        return bin2hex(openssl_random_pseudo_bytes($length,true));
+      }else{
+        // Not so cryptographically secure generator for older versions
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
       }
-      return $randomString;
     }
   }
 
