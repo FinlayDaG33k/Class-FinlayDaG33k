@@ -102,23 +102,17 @@ class FDG_EzServer {
   public function randomStr($length = 8){
     // Check if we run PHP7.0 or higher
     if (version_compare(PHP_VERSION, '7.0.0') >= 0) {
-      // Use a more cryptographically secure generator
-      // Generate 12 random bytes
-      $bytes = random_bytes($length);
-      // Construct the output string
-      $result = '';
-      // Split the string of random bytes into individual characters
-      foreach (str_split($bytes) as $byte) {
-        $result .= $chars[ord($byte) % $count];
-      }
-      return $result;
+      // Use the random_bytes(), it should know what's best for us
+      $bytes = random_bytes($length / 2); // Generate random bytes
     }else{
-      // Check wether `openssl_random_pseudo_bytes` is supported
-      if(function_exists("openssl_random_pseudo_bytes")){
-        // Use `openssl_random_pseudo_bytes` to generate a cryptographically secure string
-        return bin2hex(openssl_random_pseudo_bytes($length,true));
+      // check whether /dev/urandom exists and is readable
+      if(!ini_get('open_basedir') && is_readable('/dev/urandom')){
+        // /dev/urandom exists and is readable!
+        $fp = fopen('/dev/urandom', 'rb'); // open /dev/urandom
+        $bytes .= @fread($fp, $length / 2); // get zeh bytes
       }else{
-        // Not so cryptographically secure generator for older versions
+        // Use a non-cryptographically secure random string as final-resort
+        array_push($this->fdgWarns,"Could not use random_bytes() nor /dev/urandom to create a random string! Using a non-cryptographically secure algorithm instead!");
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -128,6 +122,12 @@ class FDG_EzServer {
         return $randomString;
       }
     }
+    $result = '';
+    // Split the string of random bytes into individual characters
+    foreach (str_split($bytes) as $byte) {
+      $result .= $chars[ord($byte) % $count];
+    }
+    return $result;
   }
 
   /**
