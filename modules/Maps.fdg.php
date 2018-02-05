@@ -27,4 +27,10 @@
       }
       return file_get_contents("https://maps.googleapis.com/maps/api/distancematrix/json?origins=".urlencode($origin)."&destinations=".urlencode($destination)."&region=".urlencode($region)."&mode=".urlencode($mode)."&units=".urlencode($units)."&key=".urlencode($key));
     }
+
+    /**
+    * request directions and launch Google Maps with the results
+    *
+    * @param
+    */
   }
