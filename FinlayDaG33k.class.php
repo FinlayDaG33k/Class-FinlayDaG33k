@@ -56,7 +56,7 @@ class FinlayDaG33k {
     $newData = json_decode(file_get_contents("https://raw.githubusercontent.com/FinlayDaG33k/Class-FinlayDaG33k/master/package.json"),1);
     if (!empty($this->packageData['version']) && !empty($newData['version'])){
       if(version_compare($this->packageData['version'], $newData['version']) < 0){
-        array_push($this->fdgWarns,"Missing dependency: " . $dependency . ". This library might not function as intended!");
+        array_push($this->fdgWarns,"A new version was found! It is highly recommended to update as soon as possible!");
       }
     }
   }
