@@ -19,16 +19,7 @@ class FinlayDaG33k {
   public function __construct() {
     // Load the packageData
     $this->packageData = json_decode(file_get_contents(__DIR__."/package.json"),1);
-
-    // Check wether the current PHP version is higher or equal to the minimum
-    if(version_compare(PHP_VERSION, $this->packageData['min-php']) < 0){
-      array_push($this->fdgWarns,"We've detected that this server runs on PHP ".PHP_VERSION.". However, this library has been written for PHP >=".$this->packageData['min-php'].". Please consider updating your PHP! Failing to do so may result in nasty bugs!");
-    }
-
-    if($this->checkUpdate()){
-      array_push($this->fdgWarns,"A New version for Class-FinlayDaG33k is available for download!");
-    }
-
+    // Load the modules
     $this->LoadModules();
   }
 
@@ -61,19 +52,12 @@ class FinlayDaG33k {
     }
   }
 
-  public function checkUpdate(){;
-    if (empty($this->packageData['version'])){
-      return false;
-    }
+  public function checkUpdate(){
     $newData = json_decode(file_get_contents("https://raw.githubusercontent.com/FinlayDaG33k/Class-FinlayDaG33k/master/package.json"),1);
-    if (empty($newData['version'])){
-      return false;
-    }
-
-    if(version_compare($this->packageData['version'], $newData['version']) < 0){
-      return true;
-    }else{
-      return false;
+    if (!empty($this->packageData['version']) && !empty($newData['version'])){
+      if(version_compare($this->packageData['version'], $newData['version']) < 0){
+        array_push($this->fdgWarns,"Missing dependency: " . $dependency . ". This library might not function as intended!");
+      }
     }
   }
 
@@ -81,6 +65,15 @@ class FinlayDaG33k {
     foreach($this->packageData['dependencies'] as $dependency){
       if(!extension_loaded($dependency)){
         array_push($this->fdgWarns,"Missing dependency: " . $dependency . ". This library might not function as intended!");
+      }
+    }
+  }
+
+  public function checkPhpVersion(){
+    // Check wether the current PHP version is higher or equal to the minimum
+    if(!empty($this->packageData['min-php'])){
+      if(version_compare(PHP_VERSION, $this->packageData['min-php']) < 0){
+        array_push($this->fdgWarns,"We've detected that this server runs on PHP ".PHP_VERSION.". However, this library has been written for PHP >=".$this->packageData['min-php'].". Please consider updating your PHP! Failing to do so may result in nasty bugs!");
       }
     }
   }
