@@ -25,6 +25,6 @@
       }else{
         $units = "metric";
       }
-      return file_get_contents("https://maps.googleapis.com/maps/api/distancematrix/json?origins=".urlencode($origin)."&destinations=".urlencode($destination)."&region=".$region."&mode=".$mode."&units=".$units."&key=".urlencode($key));
+      return file_get_contents("https://maps.googleapis.com/maps/api/distancematrix/json?origins=".urlencode($origin)."&destinations=".urlencode($destination)."&region=".urlencode($region)."&mode=".urlencode($mode)."&units=".urlencode($units)."&key=".urlencode($key));
     }
   }

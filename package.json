@@ -1,6 +1,6 @@
 {
   "name": "Class-FinlayDaG33k",
-  "version": "5.0.1.0-a",
+  "version": "5.0.2.0-a",
   "min-php": "7.0.0",
   "dependencies": [
     "mysqli",
