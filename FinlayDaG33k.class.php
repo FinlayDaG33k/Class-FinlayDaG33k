@@ -2,6 +2,7 @@
 /**
  * @author Aroop "FinlayDaG33k" Roelofs <me@finlaydag33k.nl>
  * @license FinlayDaG33k License (https://github.com/FinlayDaG33k/FinlayDaG33k-License/blob/master/LICENSE)
+ * @example https://docs.finlaydag33k.nl/docs/Class-FinlayDaG33k The primary documentation
  */
 
 /*
