@@ -167,4 +167,21 @@ class FDG_EzServer {
     // give the output to back
     return array("closest" => $closest, "distance" => $shortest);
   }
+
+  /**
+  * Get the visitor IP (Cloudflare compatible)
+  *
+  * @param bool $overwriteGlobal wether to overwrite the $_SERVER['REMOTE_ADDR'] global on detection of Cloudflare
+  * @return string The visitor IP
+  */
+  public function getVisitorIP($overwriteGlobal = false){
+    if(!empty($_SERVER['HTTP_CF_CONNECTING_IP'])){
+      if($overwriteGlobal){
+        $_SERVER["REMOTE_ADDR"] = $_SERVER['HTTP_CF_CONNECTING_IP'];
+      }
+      return $_SERVER['HTTP_CF_CONNECTING_IP'];
+    }else{
+      return $_SERVER["REMOTE_ADDR"];
+    }
+  }
 }
