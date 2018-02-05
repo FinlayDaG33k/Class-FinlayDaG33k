@@ -55,7 +55,7 @@ class FinlayDaG33k {
   public function ShowWarnings(){
     foreach($this->fdgWarns as $warn){
       ?>
-        <script>console.log("[Class-FinlayDaG33k] <?= $warn; ?>");</script>
+        <script>console.warn("[Class-FinlayDaG33k] <?= $warn; ?>");</script>
       <?php
     }
   }
@@ -73,6 +73,14 @@ class FinlayDaG33k {
       return true;
     }else{
       return false;
+    }
+  }
+
+  public function checkDependencies(){
+    foreach($this->packageData['dependencies'] as $dependency){
+      if(!extension_loaded($dependency)){
+        array_push($this->fdgWarns,"Missing dependency: " . $dependency . ". This library might not function as intended!");
+      }
     }
   }
 }
