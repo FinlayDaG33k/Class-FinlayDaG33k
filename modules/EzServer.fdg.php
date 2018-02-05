@@ -103,7 +103,15 @@ class FDG_EzServer {
     // Check if we run PHP7.0 or higher
     if (version_compare(PHP_VERSION, '7.0.0') >= 0) {
       // Use a more cryptographically secure generator
-      return bin2hex(random_bytes($length / 2));
+      // Generate 12 random bytes
+      $bytes = random_bytes($length);
+      // Construct the output string
+      $result = '';
+      // Split the string of random bytes into individual characters
+      foreach (str_split($bytes) as $byte) {
+        $result .= $chars[ord($byte) % $count];
+      }
+      return $result;
     }else{
       // Check wether `openssl_random_pseudo_bytes` is supported
       if(function_exists("openssl_random_pseudo_bytes")){
