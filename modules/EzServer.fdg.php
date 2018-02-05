@@ -94,7 +94,7 @@ class FDG_EzServer {
 
   /**
   * Generate a pseudo-random string
-  * Use with PHP >= 7.0.0 for a more cryptographically secure generator!
+  * Use with PHP >= 7.0.0 for best results!
   *
   * @param int $length The length of the random string
   * @return string The random string
