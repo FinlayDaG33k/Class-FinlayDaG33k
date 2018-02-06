@@ -29,8 +29,19 @@
     }
 
     /**
-    * request directions and launch Google Maps with the results
+    * Display a map with the route between two locations
     *
-    * @param
+    * @param string $origin The start locations
+    * @param string $destination The end location
+    * @param string $mode The mode of traveling
+    * @param string $key Optional API key for the Google Maps api
+    * @param int $height Optional height of the map
+    * @param int $width Optional width of the map
+    * @param bool $allowFullscreen Wether to allow fullscreen or not
     */
+    public function showRoute($origin,$destination,$mode="driving",$key="",$height=600,$width=450,$allowFullscreen=true){
+      ?>
+        <iframe height="<?= htmlentities($height); ?>" width="<?= htmlentities($width); ?>" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?origin=<?= urlencode($origin);?>&destination=<?= urlencode($destination);?>&mode=<?= urlencode($mode); ?>&key=<?= urlencode($key);?>" <?php if($allowfullscreen){echo "allowFullscreen";} ?>></iframe>
+      <?php
+    }
   }
