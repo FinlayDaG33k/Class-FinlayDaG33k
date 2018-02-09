@@ -122,10 +122,11 @@ class FDG_EzServer {
         return $randomString;
       }
     }
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $result = '';
     // Split the string of random bytes into individual characters
     foreach (str_split($bytes) as $byte) {
-      $result .= $chars[ord($byte) % $count];
+      $result .= $characters[ord($byte) % $length];
     }
     return $result;
   }
