@@ -103,13 +103,13 @@ class FDG_EzServer {
     // Check if we run PHP7.0 or higher
     if (version_compare(PHP_VERSION, '7.0.0') >= 0) {
       // Use the random_bytes(), it should know what's best for us
-      $bytes = random_bytes($length / 2); // Generate random bytes
+      $bytes = random_bytes($length); // Generate random bytes
     }else{
       // check whether /dev/urandom exists and is readable
       if(!ini_get('open_basedir') && is_readable('/dev/urandom')){
         // /dev/urandom exists and is readable!
         $fp = fopen('/dev/urandom', 'rb'); // open /dev/urandom
-        $bytes .= @fread($fp, $length / 2); // get zeh bytes
+        $bytes .= @fread($fp, $length); // get zeh bytes
       }else{
         // Use a non-cryptographically secure random string as final-resort
         array_push($this->fdgWarns,"Could not use random_bytes() nor /dev/urandom to create a random string! Using a non-cryptographically secure algorithm instead!");
