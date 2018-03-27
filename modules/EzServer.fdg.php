@@ -94,7 +94,7 @@ class FDG_EzServer {
 
   /**
   * Generate a pseudo-random string
-  * Use with PHP >= 7.0.0 for a more cryptographically secure generator!
+  * Use with PHP >= 7.0.0 for best results!
   *
   * @param int $length The length of the random string
   * @return string The random string
@@ -102,15 +102,17 @@ class FDG_EzServer {
   public function randomStr($length = 8){
     // Check if we run PHP7.0 or higher
     if (version_compare(PHP_VERSION, '7.0.0') >= 0) {
-      // Use a more cryptographically secure generator
-      return bin2hex(random_bytes($length / 2));
+      // Use the random_bytes(), it should know what's best for us
+      $bytes = random_bytes($length); // Generate random bytes
     }else{
-      // Check wether `openssl_random_pseudo_bytes` is supported
-      if(function_exists("openssl_random_pseudo_bytes")){
-        // Use `openssl_random_pseudo_bytes` to generate a cryptographically secure string
-        return bin2hex(openssl_random_pseudo_bytes($length,true));
+      // check whether /dev/urandom exists and is readable
+      if(!ini_get('open_basedir') && is_readable('/dev/urandom')){
+        // /dev/urandom exists and is readable!
+        $fp = fopen('/dev/urandom', 'rb'); // open /dev/urandom
+        $bytes .= @fread($fp, $length); // get zeh bytes
       }else{
-        // Not so cryptographically secure generator for older versions
+        // Use a non-cryptographically secure random string as final-resort
+        array_push($this->fdgWarns,"Could not use random_bytes() nor /dev/urandom to create a random string! Using a non-cryptographically secure algorithm instead!");
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -120,6 +122,13 @@ class FDG_EzServer {
         return $randomString;
       }
     }
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $result = '';
+    // Split the string of random bytes into individual characters
+    foreach (str_split($bytes) as $byte) {
+      $result .= $characters[ord($byte) % $length];
+    }
+    return $result;
   }
 
   /**
