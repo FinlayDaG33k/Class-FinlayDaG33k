@@ -58,14 +58,14 @@ class FDG_EzServer {
   public function getHome(){
     $currentPath = $_SERVER['PHP_SELF'];
     $pathInfo = pathinfo($currentPath);
-    return rtrim(self::getProto()."://".$_SERVER['HTTP_HOST'].$pathInfo['dirname'],"/");
+    return rtrim($_SERVER['HTTP_HOST'].$pathInfo['dirname'],"/");
   }
 
   /**
   * @return string The root of the current domain
   */
   public function getRoot(){
-    return self::getProto()."://".$_SERVER['HTTP_HOST'];
+    return $_SERVER['HTTP_HOST'];
   }
 
   /**
