@@ -20,7 +20,7 @@
     * @return string the JSON response containing both the origin and destination locations and the distance
     */
     public function getDistance($origin,$destination,$region="",$mode="driving",$units=0,$key=""){
-      if($units || $units = "imperial"){
+      if($units || strtolower($units) = "imperial"){
         $units = "imperial";
       }else{
         $units = "metric";
