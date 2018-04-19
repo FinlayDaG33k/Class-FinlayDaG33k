@@ -1,3 +1,6 @@
+# DEPRECATED
+All development on this project has been halted and moved to [Craftsman](https://gitlab.com/FinlayDaG33k/craftsman/)
+
 # Class-FinlayDaG33k
 A set of classes in a nice module fashion containing some handy functions that I use on a regular basis.
 
